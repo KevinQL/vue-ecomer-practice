@@ -4,69 +4,85 @@ Este es un proyecto de práctica de Vue.js que implementa una tienda virtual sim
 
 ## Características Principales
 
-### 1. Catálogo de Productos
+### 1. Sistema de Navegación
+- Implementación de Vue Router para navegación entre páginas
+- Rutas configuradas:
+  - `/`: Página de inicio con mensaje de bienvenida
+  - `/shop`: Tienda virtual con productos y carrito
+  - `/about`: Página informativa sobre la tienda
+- Menú de navegación mejorado con indicador de página activa
+- Transiciones suaves entre páginas
+
+### 2. Interfaz de Usuario Mejorada
+- Nuevo componente HeaderTitle con fondo distintivo
+- Diseño mejorado del filtro de precios con bordes decorativos
+- Estilo consistente en todas las vistas
+- Tema oscuro optimizado con acentos en #646cff
+
+### 3. Catálogo de Productos
 - Lista de productos con precios
 - Filtrado dinámico por rango de precios (mínimo y máximo)
 - Contador de productos disponibles según filtros
 - Productos predefinidos: Laptop, Smartphone, Headphones, Mouse, Keyboard
 
-### 2. Carrito de Compras
+### 4. Carrito de Compras
 - Añadir/remover productos
 - Contador de items en tiempo real
 - Cálculo automático del total
 - Sistema de descuento del 30%
-- Mensaje personalizable en el carrito
-- Función para copiar el descuento al portapapeles
-
-### 3. Características Técnicas
-- Implementación de Vue 3 con `<script setup>`
-- Uso de Computed Properties para cálculos reactivos
-- Sistema de comunicación entre componentes con props y eventos
-- Estilizado con CSS modular (scoped)
-- Diseño responsive con grid layout
+- Interfaz simplificada y más intuitiva
 
 ## Estructura del Proyecto
 ```
 vue-computed-practice/
 ├── src/
 │   ├── components/
+│   │   ├── HeaderTitle.vue    # Componente de título mejorado
 │   │   ├── ProductList.vue    # Lista de productos con filtros
-│   │   └── ShoppingCart.vue   # Carrito de compras con descuentos
-│   ├── App.vue               # Componente principal
-│   ├── main.js              # Punto de entrada
-│   └── style.css            # Estilos globales
+│   │   └── ShoppingCart.vue   # Carrito de compras simplificado
+│   ├── views/
+│   │   ├── HomeView.vue      # Página de inicio
+│   │   ├── ShopView.vue      # Vista principal de la tienda
+│   │   └── AboutView.vue     # Nueva página "Acerca de"
+│   ├── router/
+│   │   └── index.js         # Configuración de rutas actualizada
+│   ├── App.vue              # Navegación mejorada
+│   ├── main.js             # Punto de entrada
+│   └── style.css           # Estilos globales actualizados
 ├── package.json
 └── vite.config.js
 ```
 
-## Componentes
+## Componentes Actualizados
 
 ### App.vue
-- Componente principal que gestiona el estado global
-- Manejo del carrito de compras
-- Sistema de filtros de precio
-- Layout principal con grid
+- Nueva barra de navegación con diseño mejorado
+- Indicador visual de página activa
+- Estructura responsive actualizada
 
-### ProductList.vue
-- Muestra productos disponibles
-- Implementa filtrado por precio
-- Emite eventos para agregar productos al carrito
+### HeaderTitle.vue
+- Diseño modernizado con fondo #646cff
+- Subtítulo informativo
+- Personalizable mediante props
+- Margen inferior optimizado
 
-### ShoppingCart.vue
-- Gestiona items en el carrito
-- Calcula totales y descuentos
-- Permite remover productos
-- Muestra mensajes personalizados
+### Views
+- **HomeView**: Página de bienvenida con enlace a la tienda
+- **ShopView**: Vista principal con diseño mejorado
+- **AboutView**: Nueva página con información de la tienda
 
 ## Características de Diseño
-- Tema oscuro con fondo negro
-- Layout responsive
+- Tema oscuro con fondo #242424
+- Acentos en #646cff para elementos interactivos
+- Layout responsive mejorado
 - Máximo ancho de 1200px
-- Bordes redondeados
+- Bordes redondeados consistentes
 - Diseño modular y reutilizable
+- Transiciones suaves en interacciones
 
 ## Tecnologías Utilizadas
 - Vue 3
+- Vue Router 4
 - Vite
 - CSS Modules
 - Computed Properties
@@ -94,11 +110,17 @@ npm run build
 - Más opciones de filtrado
 - Sistema de categorías
 - Gestión de inventario
-- Checkout process
-- Responsive design improvements
+- Proceso de checkout
+- Mejoras en el diseño responsive
+- Integración con backend
+- Sistema de autenticación
+- Historial de pedidos
 
 ## Notas de Desarrollo
-- El proyecto utiliza la Composition API de Vue 3 para mejor organización del código
+- El proyecto utiliza la Composition API de Vue 3
 - Los precios se muestran con 2 decimales usando toFixed(2)
-- El diseño es responsive y adaptable a diferentes tamaños de pantalla
-- Se implementó un sistema de descuento del 30% en el carrito
+- Diseño responsive optimizado para múltiples dispositivos
+- Sistema de descuento del 30% en el carrito
+- Nueva navegación entre páginas con Vue Router 4
+- Componentes modularizados para mejor mantenimiento
+- Estilos consistentes en toda la aplicación
