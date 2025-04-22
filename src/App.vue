@@ -1,102 +1,48 @@
 <script setup>
-  import { ref, computed } from 'vue'
-  import ProductList from './components/ProductList.vue'
-  import ShoppingCart from './components/ShoppingCart.vue'
-
-  const cartItems = ref([])
-  const priceFilter = ref({
-    min: 0,
-    max: 1000
-  })
-
-  const totalDescuento = computed(() => {
-    return cartItems.value.reduce((sum, item) => sum + item.price * 0.7, 0).toFixed(2)
-  })
-
-  // Computed property for total items in cart
-  const cartItemCount = computed(() => cartItems.value.length)
-
-  const addToCart = (product) => {
-    cartItems.value.push(product)
-  }
-
-  const removeFromCart = (product) => {
-    const index = cartItems.value.findIndex(item => item.id === product.id)
-    if (index !== -1) {
-      cartItems.value.splice(index, 1)
-    }
-  }
 </script>
 
-
 <template>
-  <div class="app">
-    <h1>Vue Shop with Computed Properties</h1>
-    
-    <div class="price-filter">
-      <h3>Price Filter</h3>
-      <span style="color: yellowgreen;"><small> DESCUENTO ${{ totalDescuento }} soles de {{ cartItemCount }} unidades</small></span>
-      <div class="filter-inputs">
-        <label>
-          Min Price:
-          <input type="number" v-model="priceFilter.min" min="0">
-        </label>
-        <label>
-          Max Price:
-          <input type="number" v-model="priceFilter.max" min="0">
-        </label>
-      </div>
-    </div>
-
-    <div class="main-content">
-      <ProductList 
-        :min-price="Number(priceFilter.min)" 
-        :max-price="Number(priceFilter.max)"
-        @add-to-cart="addToCart"
-      />
-      <ShoppingCart 
-        :items="cartItems"
-        :msjg="String('esto es un mensaje de prueba 2')"
-        @remove-from-cart="removeFromCart"
-        @send-text="sendText"
-      />
-    </div>
+  <div class="app-container">
+    <nav class="nav-menu">
+      <router-link to="/">Inicio</router-link>
+      <router-link to="/shop">Tienda</router-link>
+      <router-link to="/about">Sobre</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
+<style>
+.app-container {
+  min-height: 100vh;
+  background-color: #242424;
+  padding: 1rem;
+}
 
-<style scoped>
-  .app {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: black;
-    border-radius: 13px;
-  }
+.nav-menu {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 1rem;
+  background-color: black;
+  border-radius: 13px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 
-  .price-filter {
-    margin-bottom: 20px;
-  }
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
 
-  .filter-inputs {
-    display: flex;
-    gap: 20px;
-  }
+.nav-menu a:hover {
+  background-color: #646cff;
+}
 
-  .filter-inputs label {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .main-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-  }
-
-  input[type="number"] {
-    padding: 5px;
-    width: 100px;
-  }
+.nav-menu a.router-link-active {
+  background-color: #535bf2;
+}
 </style>

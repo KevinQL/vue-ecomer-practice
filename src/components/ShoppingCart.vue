@@ -5,26 +5,14 @@
     items: {
       type: Array,
       required: true
-    },
-    msjg: {
-      type: String,
-      default: 'Esto es un mensaje por defecto'
     }
   })
 
-  const emit = defineEmits(['removeFromCart', 'sendText'])
+  const emit = defineEmits(['removeFromCart'])
 
   // Computed property to calculate total price
   const totalPrice = computed(() => {
     return props.items.reduce((sum, item) => sum + item.price, 0)
-  })
-
-  /**
-   * Computar el precio total menos el descuento del 30%
-   * @returns {number} Precio total menos el descuento
-   */
-  const totalDescuento = computed(() => {
-    return props.items.reduce((sum, item) => sum + item.price * 0.7, 0)
   })
 
   // Computed property to count total items
@@ -34,28 +22,16 @@
       sendText()
       emit('removeFromCart', item)
   }
-
-  /**
-   * Enviar texto al portapapeles
-   * @returns {void}
-   * @throws {Error} Error al copiar el texto
-   */
-  const sendText = () => {
-    const text = totalDescuento.value.toFixed(2)
-    emit('sendText', text)
-  }
 </script>
 
 
 <template>
   <div class="shopping-cart">
     <h2>Shopping Cart ({{ itemCount }})</h2>
-    <h3>{{ msjg }}</h3>
     <div v-if="items.length === 0" class="empty-cart">
       Your cart is empty
     </div>
     <div v-else>
-        <button @click="sendText">Ver desceunto</button>
         <div v-for="item in items" :key="item.id" class="cart-item">
             <span>{{ item.name }}</span>
             <span>${{ item.price.toFixed(2) }}</span>
